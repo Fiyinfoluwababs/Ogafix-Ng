@@ -11,16 +11,17 @@
   <style>
     /* ===== DESIGN TOKENS ===== */
     :root {
-      --primary: #1FAF6B;
-      --primary-hover: #17945A;
-      --primary-light: rgba(31, 175, 107, 0.1);
+      --primary: #1D7A4C;
+      --primary-hover: #16633E;
+      --primary-light: rgba(29, 122, 76, 0.08);
       --accent: #FF8A3D;
       --accent-hover: #F97316;
-      --bg: #F7F8FA;
+      --bg: #F7F9F5;
       --white: #FFFFFF;
       --text-primary: #1C1C1E;
       --text-secondary: #4A4A4A;
-      --border: #E5E5EA;
+      --border: #D5D9CC;
+      --sage-light: #EAF3E2;
       --success: #22C55E;
       --warning: #F59E0B;
       --error: #EF4444;
@@ -300,7 +301,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, #0F2B1E 0%, #1A4A32 40%, #1FAF6B 100%);
+      background: linear-gradient(135deg, #0F2B1E 0%, #1A4A32 40%, #1D7A4C 100%);
       overflow: hidden;
       padding-top: var(--nav-height);
     }
@@ -413,7 +414,7 @@
     .phone-card-avatar {
       width: 36px; height: 36px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #0d8b4f);
+      background: linear-gradient(135deg, var(--primary), #115C38);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -486,33 +487,86 @@
     /* ===== PROBLEM ===== */
     .problem-section { background: var(--white); }
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .problem-list { display: flex; flex-direction: column; gap: 16px; }
+    .problem-list { display: flex; flex-direction: column; gap: 14px; }
     .problem-item {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 16px 20px;
+      padding: 16px 24px;
       background: var(--bg);
-      border-radius: var(--radius-sm);
-      border-left: 4px solid var(--error);
-      font-size: 16px;
+      border-radius: 14px;
+      font-size: 15px;
       font-weight: 500;
+      position: relative;
+      padding-left: 24px;
     }
-    .problem-item i { color: var(--error); font-size: 18px; width: 24px; text-align: center; }
-    .problem-image {
-      background: linear-gradient(135deg, #1FAF6B15, #1FAF6B08);
-      border-radius: var(--radius-lg);
-      padding: 40px;
+    .problem-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--error);
+      border-radius: 3px 0 0 3px;
+    }
+    .problem-item-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: #FCEAEA;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
+      font-size: 16px;
+      color: var(--error);
+      flex-shrink: 0;
     }
-    .problem-image-inner { text-align: center; color: var(--text-secondary); }
-    .problem-image-inner i { font-size: 80px; color: var(--primary); opacity: 0.3; margin-bottom: 16px; }
-    .problem-image-inner p { max-width: none; }
+    .problem-stats {
+      background: var(--bg);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .problem-stat {
+      text-align: center;
+    }
+    .problem-stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .problem-stat-label {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .problem-stat-divider {
+      height: 1px;
+      background: var(--border);
+      width: 80%;
+      margin: 0 auto;
+    }
+    .problem-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .problem-cta:hover { gap: 12px; }
+    .problem-cta i { font-size: 14px; }
 
     /* ===== SOLUTION ===== */
     .solution-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
@@ -553,35 +607,60 @@
 
     /* ===== SERVICES ===== */
     .services-section { background: var(--white); }
-    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--grid-gap); margin-top: 48px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
     .service-card {
       background: var(--bg);
-      border-radius: var(--card-r-sm);
-      padding: var(--card-p);
-      text-align: center;
-      border: 1px solid transparent;
-      transition: all 0.3s;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 14px;
       cursor: pointer;
+      transition: all 0.25s ease;
     }
     .service-card:hover {
       border-color: var(--primary);
-      background: var(--white);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .service-card:active {
+      transform: scale(0.98);
     }
     .service-icon {
-      width: 56px; height: 56px;
-      border-radius: 14px;
-      background: var(--primary-light);
-      color: var(--primary);
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin: 0 auto 16px;
+      font-size: 18px;
+      margin-bottom: 14px;
     }
-    .service-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-    .service-card p { font-size: 13px; color: var(--text-secondary); max-width: none; }
+    .service-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text-primary); }
+    .service-card .trust-signal { font-size: 13px; color: var(--primary); font-weight: 500; }
+    .service-card-more {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .service-card-more:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+    .service-card-more .service-icon {
+      background: rgba(255,255,255,0.15);
+    }
+    .service-card-more h4 { color: var(--white); }
+    .service-card-more .trust-signal { color: rgba(255,255,255,0.85); }
 
     /* ===== HOW IT WORKS ===== */
     .how-section { background: var(--white); }
@@ -634,43 +713,78 @@
 
     /* ===== APP SHOWCASE ===== */
     .app-showcase {
-      background: linear-gradient(135deg, #0F2B1E 0%, #1A4A32 50%, #1FAF6B 100%);
+      background: #14361F;
       color: var(--white);
     }
-    .app-showcase .section-subtitle { color: rgba(255,255,255,0.7); }
+    .app-showcase .section-subtitle { color: rgba(255,255,255,0.65); }
     .app-showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
     .app-showcase-content h2 { font-size: 40px; font-weight: 700; margin-bottom: 16px; }
-    .app-showcase-content p { font-size: 18px; color: rgba(255,255,255,0.7); margin-bottom: 32px; line-height: 1.7; }
-    .app-features { display: flex; flex-direction: column; gap: 16px; }
+    .app-showcase-content p { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 32px; line-height: 1.7; }
+    .app-features { display: flex; flex-direction: column; gap: 10px; }
     .app-feature {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      background: rgba(255,255,255,0.08);
-      border-radius: var(--radius-sm);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
     }
-    .app-feature i { font-size: 20px; color: var(--primary); width: 28px; text-align: center; }
-    .app-feature span { font-size: 16px; font-weight: 500; }
-    .app-showcase-visual { display: flex; justify-content: center; gap: 24px; position: relative; }
+    .app-feature.highlighted {
+      background: var(--primary);
+    }
+    .app-feature i { font-size: 18px; width: 24px; text-align: center; color: var(--primary); }
+    .app-feature.highlighted i { color: var(--white); }
+    .app-feature span { font-size: 15px; font-weight: 500; }
+    .app-showcase-visual { display: flex; justify-content: center; gap: 20px; position: relative; }
     .showcase-phone {
       width: 220px; height: 440px;
       background: #1a1a2e;
       border-radius: 28px;
       border: 2px solid rgba(255,255,255,0.15);
-      padding: 10px;
+      padding: 8px;
       box-shadow: var(--shadow-xl);
     }
     .showcase-phone:nth-child(2) { transform: translateY(30px) scale(0.95); }
-    .showcase-phone:nth-child(3) { transform: translateY(60px) scale(0.9); }
-    .showcase-phone-inner { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; position: relative; }
+    .showcase-phone-inner { width: 100%; height: 100%; border-radius: 20px; overflow: hidden; position: relative; background: var(--white); display: flex; flex-direction: column; }
+
+    /* phone mock inner UI */
+    .phone-status { display: flex; justify-content: space-between; padding: 12px 16px 6px; font-size: 11px; font-weight: 600; color: var(--text-primary); }
+    .phone-location { display: flex; align-items: center; gap: 4px; background: var(--primary); color: var(--white); padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; margin: 2px 12px 10px; }
+    .phone-search-bar { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; margin: 0 12px 10px; }
+    .phone-search-bar i { color: var(--text-secondary); font-size: 14px; }
+    .phone-search-bar input { border: none; background: none; font-size: 12px; color: var(--text-primary); width: 100%; outline: none; font-family: var(--font); }
+    .phone-search-bar input::placeholder { color: #9A9FA5; }
+    .phone-filter-row { display: flex; gap: 6px; padding: 0 12px; margin-bottom: 10px; }
+    .phone-filter-chip { padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 500; border: 1px solid var(--border); background: var(--white); color: var(--text-secondary); }
+    .phone-filter-chip.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+    .phone-result-list { flex: 1; overflow: hidden; padding: 0 12px; display: flex; flex-direction: column; gap: 8px; }
+    .phone-result-card { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--bg); border-radius: 10px; }
+    .phone-result-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .phone-result-info { flex: 1; min-width: 0; }
+    .phone-result-name { font-size: 11px; font-weight: 600; color: var(--text-primary); }
+    .phone-result-trade { font-size: 9px; color: var(--text-secondary); }
+    .phone-result-meta { font-size: 9px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .phone-result-meta i { font-size: 8px; color: var(--primary); }
+
+    /* phone 2 — profile */
+    .phone-profile-header { background: linear-gradient(135deg, #1D7A4C, #115C38); padding: 20px 16px 40px; position: relative; }
+    .phone-profile-avatar { width: 56px; height: 56px; border-radius: 50%; border: 3px solid var(--white); position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); background: #2D8B5C; color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+    .phone-profile-body { padding: 36px 14px 12px; text-align: center; }
+    .phone-profile-name { font-size: 13px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .phone-profile-name i { font-size: 11px; color: var(--primary); }
+    .phone-profile-trade { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; }
+    .phone-profile-stars { font-size: 11px; color: var(--gold); }
+    .phone-profile-reviews { font-size: 9px; color: var(--text-secondary); }
+    .phone-tag-row { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin: 8px 0; }
+    .phone-tag { padding: 3px 8px; border-radius: 100px; font-size: 9px; font-weight: 500; background: var(--primary-light); color: var(--primary); }
+    .phone-portfolio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; padding: 0 14px; margin-bottom: 8px; }
+    .phone-portfolio-tile { aspect-ratio: 1; border-radius: 6px; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--text-secondary); }
+    .phone-book-btn { margin: 0 14px 10px; padding: 8px; border-radius: 8px; background: var(--primary); color: var(--white); font-size: 11px; font-weight: 600; text-align: center; border: none; cursor: pointer; font-family: var(--font); }
 
     /* ===== ARTISANS ===== */
     .artisans-section { background: linear-gradient(135deg, #F0F9F4 0%, #E8F5EE 100%); }
     .artisans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .artisans-benefits { display: flex; flex-direction: column; gap: 16px; }
+    .artisans-benefits { display: flex; flex-direction: column; gap: 10px; }
     .artisans-benefit {
       display: flex;
       align-items: center;
@@ -680,27 +794,169 @@
     }
     .artisans-benefit i { color: var(--primary); font-size: 18px; width: 24px; }
     .artisans-image {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 400px;
-      box-shadow: var(--shadow-md);
       position: relative;
-      overflow: hidden;
     }
-    .artisans-image::before {
-      content: '';
-      position: absolute;
-      top: -50%; right: -50%;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+
+    /* stat strip */
+    .artisans-stat-strip {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin: 24px 0 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .artisans-stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .artisans-stat-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .artisans-stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .artisans-stat-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+      margin: 0 16px;
+    }
+
+    /* dashboard phone frame */
+    .artisans-dashboard {
+      background: #1C1C1E;
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow-xl);
+      max-width: 330px;
+      width: 100%;
+      color: var(--white);
+      font-family: var(--font);
+    }
+    .ad-status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,0.5);
+    }
+    .ad-status span { display: flex; align-items: center; gap: 4px; }
+    .ad-greeting {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .ad-avatar {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
+      background: linear-gradient(135deg, #1D7A4C, #115C38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.12);
     }
-    .artisans-image-inner { position: relative; z-index: 1; text-align: center; }
-    .artisans-image-inner i { font-size: 80px; color: var(--primary); opacity: 0.4; margin-bottom: 16px; }
+    .ad-greeting-text { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1px; }
+    .ad-name { font-size: 18px; font-weight: 700; line-height: 1.2; }
+    .ad-trade { font-size: 12px; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+    .ad-earnings {
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .ad-earnings-label { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.7); margin-bottom: 4px; letter-spacing: 0.3px; }
+    .ad-earnings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ad-earnings-amount { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+    .ad-earnings-trend {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.15);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .ad-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .ad-stat-tile {
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ad-stat-num { font-size: 20px; font-weight: 800; }
+    .ad-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .ad-requests-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.65);
+    }
+    .ad-requests-badge {
+      background: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+      color: var(--white);
+    }
+    .ad-request-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+    .ad-request-card:last-child { margin-bottom: 0; }
+    .ad-req-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .ad-req-title { font-size: 13px; font-weight: 600; }
+    .ad-req-price { font-size: 14px; font-weight: 700; color: var(--primary); }
+    .ad-req-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .ad-req-bottom i { font-size: 10px; margin-right: 3px; }
 
     /* ===== TESTIMONIALS ===== */
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
@@ -725,7 +981,7 @@
     .testimonial-avatar {
       width: 44px; height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #0d8b4f);
+      background: linear-gradient(135deg, var(--primary), #115C38);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -766,7 +1022,7 @@
     /* ===== DOWNLOAD CTA ===== */
     .download-cta {
       position: relative;
-      background: linear-gradient(135deg, #0F2B1E 0%, #1A4A32 40%, #1FAF6B 100%);
+      background: linear-gradient(135deg, #0F2B1E 0%, #1A4A32 40%, #1D7A4C 100%);
       overflow: hidden;
     }
     .download-cta::before {
@@ -913,9 +1169,8 @@
       .hero-floating-card { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .problem-grid { grid-template-columns: 1fr; gap: 40px; }
-      .problem-image { min-height: 280px; order: -1; }
       .solution-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
       .how-timeline { grid-template-columns: repeat(3, 1fr); gap: 24px; }
       .how-timeline::before { display: none; }
       .how-step p { max-width: 240px; }
@@ -924,9 +1179,11 @@
       .app-showcase-content h2 { font-size: 32px; }
       .app-features { max-width: 480px; margin: 0 auto; }
       .app-showcase-visual { order: -1; }
-      .showcase-phone:nth-child(3) { display: none; }
+      .showcase-phone:nth-child(2) { display: none; }
       .artisans-grid { grid-template-columns: 1fr; gap: 40px; }
-      .artisans-image { min-height: 280px; order: -1; }
+      .artisans-image { order: -1; }
+      .artisans-stat-strip { margin: 20px 0 16px; padding: 14px 16px; }
+      .artisans-stat-value { font-size: 18px; }
       .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
       .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .download-cta .container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
@@ -964,12 +1221,12 @@
       .stat-number { font-size: 32px; }
       .stat-card { padding: 16px; }
       .problem-grid { gap: 32px; }
-      .problem-image { min-height: 220px; padding: 24px; }
+      .problem-stats { padding: 28px; }
       .solution-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
       .solution-card { padding: 20px; }
       .services-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 32px; }
       .service-card { padding: 16px; }
-      .service-icon { width: 44px; height: 44px; font-size: 18px; }
+      .service-icon { width: 40px; height: 40px; font-size: 18px; }
       .how-timeline { grid-template-columns: 1fr; gap: 32px; margin-top: 32px; }
       .how-step p { max-width: 100%; }
       .how-phone-preview { flex-direction: column; align-items: center; gap: 16px; margin-top: 40px; }
@@ -979,10 +1236,16 @@
       .app-showcase-content h2 { font-size: 28px; }
       .app-showcase-content p { font-size: 16px; }
       .app-showcase-visual { gap: 16px; }
-      .showcase-phone { width: 160px; height: 320px; }
+      .showcase-phone { width: 180px; height: 360px; }
       .showcase-phone:nth-child(2) { display: none; }
       .artisans-grid { gap: 32px; }
-      .artisans-image { min-height: 220px; padding: 24px; }
+      .artisans-dashboard { max-width: 300px; padding: 14px; }
+      .artisans-stat-strip { margin: 16px 0 14px; padding: 12px 14px; }
+      .artisans-stat-value { font-size: 16px; }
+      .artisans-stat-label { font-size: 11px; }
+      .ad-earnings-amount { font-size: 24px; }
+      .ad-earnings { padding: 14px; }
+      .ad-stat-num { font-size: 18px; }
       .testimonials-grid { margin-top: 32px; }
       .testimonial-card { padding: 20px; }
       .trust-grid { grid-template-columns: 1fr; margin-top: 32px; }
@@ -997,13 +1260,374 @@
     }
 
     /* ===== SMALL MOBILE (≤ 430px) ===== */
+    /* ===== AUTH SCREEN OVERLAYS ===== */
+    .screen-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .screen-overlay.open { display: block; }
+    .screen-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .screen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .screen-back {
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .screen-back:hover { border-color: var(--primary); color: var(--primary); }
+    .screen-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .screen-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      height: 52px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0 16px;
+      font-size: 15px;
+      font-family: var(--font);
+      color: var(--text-primary);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder { color: #9A9FA5; }
+    .form-input:focus { border-color: var(--primary); }
+    .form-input.error { border-color: var(--error); }
+    .form-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -8px;
+      margin-bottom: 24px;
+    }
+    .form-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      text-decoration: none;
+    }
+    .form-link:hover { color: var(--primary-hover); }
+    .btn-block {
+      width: 100%;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: var(--font);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-forest {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .btn-forest:hover { background: var(--primary-hover); }
+    .btn-forest:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-outline {
+      background: var(--white);
+      color: var(--text-primary);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .social-btns { display: flex; gap: 12px; }
+    .social-btn {
+      flex: 1;
+      height: 50px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: var(--font);
+      transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: #CCC; background: #FAFAFA; }
+    .social-btn i { font-size: 18px; }
+    .screen-footer-text {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 24px;
+    }
+    .screen-footer-text a {
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .screen-footer-text a:hover { color: var(--primary-hover); }
+
+    /* ===== ROLE TOGGLE ===== */
+    .role-toggle {
+      display: flex;
+      background: var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+    .role-option {
+      flex: 1;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--font);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .role-option.active {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(29,122,76,0.2);
+    }
+
+    /* ===== CHECKBOX ===== */
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .checkbox-row input[type="checkbox"] {
+      display: none;
+    }
+    .check-box {
+      min-width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+    .checkbox-row input:checked + .check-box {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .checkbox-row input:checked + .check-box::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--white);
+    }
+    .checkbox-row a { color: var(--primary); font-weight: 600; text-decoration: none; }
+
+    /* ===== OTP ===== */
+    .otp-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--sage-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+      color: var(--primary);
+    }
+    .otp-inputs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 28px 0;
+    }
+    .otp-box {
+      width: 54px;
+      height: 60px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: var(--font);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .otp-box:focus { border-color: var(--primary); }
+    .otp-box.filled { border-color: var(--primary); }
+    .otp-resend {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 16px 0 28px;
+    }
+    .otp-resend button {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 14px;
+    }
+    .otp-resend button:hover { color: var(--primary-hover); }
+
+    /* ===== PROGRESS ===== */
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .progress-step {
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--border);
+    }
+    .progress-step.filled { background: var(--primary); }
+
+    /* ===== PILL TOGGLE ===== */
+    .pill-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pill-option {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--font);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-option.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* ===== UPLOAD ZONE ===== */
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      text-align: center;
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+    .upload-zone.active {
+      border-color: var(--primary);
+      background: var(--sage-light);
+    }
+    .upload-zone i {
+      font-size: 40px;
+      color: var(--border);
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+    .upload-zone.active i { color: var(--primary); }
+    .upload-zone p {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .upload-zone small {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* ===== MOBILE ADAPT ===== */
     @media (max-width: 430px) {
       .hero-content h1 { font-size: 30px; }
       .phone-mockup { width: 200px; height: 400px; }
       .stats-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
       .how-phone-preview { display: none; }
-      .showcase-phone { width: 140px; height: 280px; }
+      .showcase-phone { width: 160px; height: 320px; }
       .download-cta .container { gap: 24px; }
       .footer-grid { grid-template-columns: 1fr; }
     }
@@ -1026,8 +1650,8 @@
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
-        <a href="#" class="btn btn-secondary">Sign In</a>
-        <a href="#" class="btn btn-primary">Get Started</a>
+        <a href="#" class="btn btn-secondary" onclick="openScreen('signinScreen');return false;">Sign In</a>
+        <a href="#" class="btn btn-primary" onclick="openScreen('signupScreen');return false;">Get Started</a>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -1041,7 +1665,7 @@
     <a href="#artisans">For Artisans</a>
     <a href="#testimonials">Reviews</a>
     <a href="#contact">Contact</a>
-    <a href="#" style="border:none; font-weight:600; color:var(--primary);">Sign In</a>
+    <a href="#" style="border:none; font-weight:600; color:var(--primary);" onclick="openScreen('signinScreen');closeScreen('signupScreen');return false;">Sign In</a>
   </div>
 
   <!-- ===== HERO (grid-6 / grid-6) ===== -->
@@ -1159,18 +1783,25 @@
           <h2 class="section-title">Finding Reliable Artisans Shouldn't Be This Difficult</h2>
           <p class="section-subtitle" style="margin-bottom:32px;">Nigerians face real challenges when trying to find skilled help. OgaFix was built to solve them.</p>
           <div class="problem-list">
-            <div class="problem-item"><i class="fas fa-times-circle"></i> Endless referrals that don't work out</div>
-            <div class="problem-item"><i class="fas fa-times-circle"></i> Unverified workers with no accountability</div>
-            <div class="problem-item"><i class="fas fa-times-circle"></i> Poor service quality and hidden fees</div>
-            <div class="problem-item"><i class="fas fa-times-circle"></i> Slow response times when you need help fast</div>
-            <div class="problem-item"><i class="fas fa-times-circle"></i> Pricing uncertainty and negotiation fatigue</div>
+            <div class="problem-item"><span class="problem-item-icon"><i class="fas fa-route"></i></span> Endless referrals that don't work out</div>
+            <div class="problem-item"><span class="problem-item-icon"><i class="fas fa-shield"></i></span> Unverified workers with no accountability</div>
+            <div class="problem-item"><span class="problem-item-icon"><i class="fas fa-thumbs-down"></i></span> Poor service quality and hidden fees</div>
+            <div class="problem-item"><span class="problem-item-icon"><i class="fas fa-clock"></i></span> Slow response times when you need help fast</div>
+            <div class="problem-item"><span class="problem-item-icon"><i class="fas fa-money-bill-wave"></i></span> Pricing uncertainty and negotiation fatigue</div>
           </div>
         </div>
-        <div class="problem-image fade-in-right">
-          <div class="problem-image-inner">
-            <i class="fas fa-tools"></i>
-            <p style="font-size:24px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Stressed?</p>
-            <p>We understand. Finding a reliable artisan in Nigeria is tough.</p>
+        <div class="fade-in-right">
+          <div class="problem-stats">
+            <div class="problem-stat">
+              <div class="problem-stat-number">7 in 10</div>
+              <div class="problem-stat-label">Nigerians rely on word-of-mouth referrals with no way to verify quality</div>
+            </div>
+            <div class="problem-stat-divider"></div>
+            <div class="problem-stat">
+              <div class="problem-stat-number">3+ days</div>
+              <div class="problem-stat-label">Average wait time for a referral callback</div>
+            </div>
+            <a href="#how-it-works" class="problem-cta">See how OgaFix fixes this <i class="fas fa-arrow-down"></i></a>
           </div>
         </div>
       </div>
@@ -1215,22 +1846,50 @@
     <div class="container">
       <div class="text-center" style="margin-bottom:48px;">
         <div class="section-label mx-auto"><i class="fas fa-wrench"></i> Our Services</div>
-        <h2 class="section-title">Skilled Artisans for Every Need</h2>
-        <p class="section-subtitle mx-auto">Whatever the job, find the right professional for your project.</p>
+        <h2 class="section-title" style="font-size:28px;">Skilled Artisans for Every Need</h2>
+        <p class="section-subtitle mx-auto" style="max-width:500px;">Find trusted professionals for every job, big or small.</p>
       </div>
       <div class="services-grid stagger-children">
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-wrench"></i></div><h4>Plumbing</h4><p>Pipe repairs & installations</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-bolt"></i></div><h4>Electrical</h4><p>Wiring & electrical repairs</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-chair"></i></div><h4>Carpentry</h4><p>Furniture & woodwork</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-tools"></i></div><h4>Generator Repairs</h4><p>Maintenance & servicing</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-snowflake"></i></div><h4>AC Repairs</h4><p>Cooling system services</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-car"></i></div><h4>Mechanics</h4><p>Vehicle repair & care</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-fire"></i></div><h4>Welding</h4><p>Metal fabrication & repairs</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-paint-roller"></i></div><h4>Painting</h4><p>Interior & exterior painting</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-sun"></i></div><h4>Solar Installation</h4><p>Solar panel setups</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-video"></i></div><h4>CCTV Installation</h4><p>Security camera systems</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-th"></i></div><h4>Tiling</h4><p>Floor & wall tiling</p></div>
-        <div class="service-card fade-in-up"><div class="service-icon"><i class="fas fa-cut"></i></div><h4>Tailoring</h4><p>Custom clothing & repairs</p></div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-wrench"></i></div>
+          <h4>Plumbing</h4>
+          <div class="trust-signal">312 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-bolt"></i></div>
+          <h4>Electrical</h4>
+          <div class="trust-signal">428 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-chair"></i></div>
+          <h4>Carpentry</h4>
+          <div class="trust-signal">198 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
+          <h4>Generator Repairs</h4>
+          <div class="trust-signal">156 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-snowflake"></i></div>
+          <h4>AC Repairs</h4>
+          <div class="trust-signal">143 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-car"></i></div>
+          <h4>Mechanics</h4>
+          <div class="trust-signal">267 artisans</div>
+        </div>
+        <div class="service-card fade-in-up">
+          <div class="service-icon"><i class="fas fa-fire"></i></div>
+          <h4>Welding</h4>
+          <div class="trust-signal">112 artisans</div>
+        </div>
+        <div class="service-card service-card-more fade-in-up" onclick="openScreen('signupScreen');return false;">
+          <div class="service-icon"><i class="fas fa-grip"></i></div>
+          <h4>More services</h4>
+          <div class="trust-signal">View all &rarr;</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1265,17 +1924,17 @@
       </div>
       <div class="how-phone-preview">
         <div class="how-mini-phone">
-          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1FAF6B,#0d8b4f);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
+          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1D7A4C,#115C38);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
             <i class="fas fa-search"></i>
           </div>
         </div>
         <div class="how-mini-phone">
-          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1FAF6B,#0d8b4f);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
+          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1D7A4C,#115C38);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
             <i class="fas fa-comments"></i>
           </div>
         </div>
         <div class="how-mini-phone">
-          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1FAF6B,#0d8b4f);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
+          <div class="how-mini-phone-inner" style="background:linear-gradient(135deg,#1D7A4C,#115C38);display:flex;align-items:center;justify-content:center;color:white;font-size:36px;">
             <i class="fas fa-thumbs-up"></i>
           </div>
         </div>
@@ -1294,31 +1953,77 @@
       <div class="app-showcase-grid">
         <div class="app-showcase-content fade-in-left">
           <div class="app-features">
-            <div class="app-feature"><i class="fas fa-search"></i> <span>Smart search with location matching</span></div>
-            <div class="app-feature"><i class="fas fa-id-card"></i> <span>Detailed artisan profiles & portfolios</span></div>
-            <div class="app-feature"><i class="fas fa-calendar-alt"></i> <span>Easy booking & scheduling</span></div>
-            <div class="app-feature"><i class="fas fa-comment-dots"></i> <span>In-app messaging & notifications</span></div>
-            <div class="app-feature"><i class="fas fa-lock"></i> <span>Secure escrow payment system</span></div>
+            <div class="app-feature highlighted"><i class="fas fa-location-dot"></i> <span>Smart search with location matching</span></div>
+            <div class="app-feature"><i class="fas fa-id-badge"></i> <span>Detailed artisan profiles & portfolios</span></div>
+            <div class="app-feature"><i class="fas fa-calendar"></i> <span>Easy booking & scheduling</span></div>
+            <div class="app-feature"><i class="fas fa-message"></i> <span>In-app messaging & notifications</span></div>
+            <div class="app-feature"><i class="fas fa-shield"></i> <span>Secure escrow payment system</span></div>
             <div class="app-feature"><i class="fas fa-star"></i> <span>Rate and review completed jobs</span></div>
           </div>
         </div>
         <div class="app-showcase-visual fade-in-right">
+          <!-- Phone 1 — Search & Discovery -->
           <div class="showcase-phone">
-            <div class="showcase-phone-inner" style="background:linear-gradient(135deg,#1FAF6B,#0d8b4f);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;padding:20px;text-align:center;">
-              <i class="fas fa-search" style="font-size:32px;margin-bottom:12px;"></i>
-              <p style="font-size:14px;font-weight:600;">Find Artisans</p>
-              <small style="opacity:0.7;">Search & Discover</small>
+            <div class="showcase-phone-inner">
+              <div class="phone-status"><span>9:41</span><span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span></div>
+              <div class="phone-location"><i class="fas fa-map-pin"></i> Lekki Phase 1</div>
+              <div class="phone-search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Find a plumber..." readonly></div>
+              <div class="phone-filter-row">
+                <span class="phone-filter-chip active">Nearby</span>
+                <span class="phone-filter-chip">Top rated</span>
+              </div>
+              <div class="phone-result-list">
+                <div class="phone-result-card">
+                  <div class="phone-result-avatar">C</div>
+                  <div class="phone-result-info">
+                    <div class="phone-result-name">Chidi O.</div>
+                    <div class="phone-result-trade">Electrician</div>
+                  </div>
+                  <div class="phone-result-meta"><i class="fas fa-star"></i> 4.8 <span style="margin-left:6px;"><i class="fas fa-map-pin"></i> 1.2km</span></div>
+                </div>
+                <div class="phone-result-card">
+                  <div class="phone-result-avatar">F</div>
+                  <div class="phone-result-info">
+                    <div class="phone-result-name">Fatima K.</div>
+                    <div class="phone-result-trade">Plumber</div>
+                  </div>
+                  <div class="phone-result-meta"><i class="fas fa-star"></i> 4.9 <span style="margin-left:6px;"><i class="fas fa-map-pin"></i> 2.5km</span></div>
+                </div>
+                <div class="phone-result-card">
+                  <div class="phone-result-avatar">E</div>
+                  <div class="phone-result-info">
+                    <div class="phone-result-name">Emeka S.</div>
+                    <div class="phone-result-trade">Carpenter</div>
+                  </div>
+                  <div class="phone-result-meta"><i class="fas fa-star"></i> 4.7 <span style="margin-left:6px;"><i class="fas fa-map-pin"></i> 3.1km</span></div>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- Phone 2 — Artisan Profile -->
           <div class="showcase-phone">
-            <div class="showcase-phone-inner" style="background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;">
-              <i class="fas fa-user-circle" style="font-size:40px;color:var(--primary);margin-bottom:8px;"></i>
-              <p style="font-size:13px;font-weight:600;color:var(--text-primary);">Chidi O.</p>
-              <div style="color:var(--gold);font-size:12px;margin-bottom:8px;">★★★★★</div>
-              <p style="font-size:11px;color:var(--text-secondary);">Electrician • 4.8 ★</p>
-              <div style="margin-top:8px;display:flex;gap:4px;">
-                <span style="background:var(--primary-light);color:var(--primary);padding:2px 8px;border-radius:4px;font-size:10px;">Verified</span>
+            <div class="showcase-phone-inner">
+              <div class="phone-profile-header">
+                <div class="phone-status" style="color:rgba(255,255,255,0.9);padding-top:6px;"><span>9:41</span><span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span></div>
+                <div class="phone-profile-avatar">C</div>
               </div>
+              <div class="phone-profile-body">
+                <div class="phone-profile-name">Chidi O. <i class="fas fa-check-circle"></i></div>
+                <div class="phone-profile-trade">Electrician • 6 years exp.</div>
+                <div class="phone-profile-stars">★★★★★ <span class="phone-profile-reviews">(128 reviews)</span></div>
+                <div class="phone-tag-row">
+                  <span class="phone-tag">Wiring</span>
+                  <span class="phone-tag">Installation</span>
+                  <span class="phone-tag">Repairs</span>
+                </div>
+              </div>
+              <div style="font-size:10px;font-weight:600;color:var(--text-secondary);padding:0 14px 6px;">Portfolio</div>
+              <div class="phone-portfolio">
+                <div class="phone-portfolio-tile"><i class="fas fa-image"></i></div>
+                <div class="phone-portfolio-tile"><i class="fas fa-image"></i></div>
+                <div class="phone-portfolio-tile"><i class="fas fa-image"></i></div>
+              </div>
+              <button class="phone-book-btn">Book now</button>
             </div>
           </div>
         </div>
@@ -1333,21 +2038,82 @@
         <div class="fade-in-left">
           <div class="section-label"><i class="fas fa-user-tie"></i> For Artisans</div>
           <h2 class="section-title">Grow Your Business with OgaFix</h2>
-          <p class="section-subtitle" style="margin-bottom:32px;">Join thousands of skilled professionals earning more and building their reputation.</p>
-          <div class="artisans-benefits" style="margin-bottom:32px;">
-            <div class="artisans-benefit"><i class="fas fa-check-circle"></i> Get discovered by customers in your area</div>
-            <div class="artisans-benefit"><i class="fas fa-check-circle"></i> Receive more bookings and steady work</div>
-            <div class="artisans-benefit"><i class="fas fa-check-circle"></i> Build your reputation with verified reviews</div>
-            <div class="artisans-benefit"><i class="fas fa-check-circle"></i> Manage jobs efficiently from your phone</div>
-            <div class="artisans-benefit"><i class="fas fa-check-circle"></i> Increase your income with fair rates</div>
+          <p class="section-subtitle" style="margin-bottom:0;">Join thousands of skilled professionals earning more and building their reputation.</p>
+          <div class="artisans-stat-strip">
+            <div class="artisans-stat-item">
+              <span class="artisans-stat-value">₦85,000</span>
+              <span class="artisans-stat-label">avg. monthly earnings</span>
+            </div>
+            <div class="artisans-stat-divider"></div>
+            <div class="artisans-stat-item">
+              <span class="artisans-stat-value">2,400+</span>
+              <span class="artisans-stat-label">active customers nearby</span>
+            </div>
           </div>
-          <a href="#" class="btn btn-primary"><i class="fas fa-user-plus"></i> Join as an Artisan</a>
+          <div class="artisans-benefits" style="margin-bottom:32px;">
+            <div class="artisans-benefit"><i class="fas fa-circle-check"></i> Get discovered by customers in your area</div>
+            <div class="artisans-benefit"><i class="fas fa-circle-check"></i> Receive more bookings and steady work</div>
+            <div class="artisans-benefit"><i class="fas fa-circle-check"></i> Build your reputation with verified reviews</div>
+            <div class="artisans-benefit"><i class="fas fa-circle-check"></i> Manage jobs efficiently from your phone</div>
+            <div class="artisans-benefit"><i class="fas fa-circle-check"></i> Increase your income with fair rates</div>
+          </div>
+          <a href="#" class="btn btn-primary" onclick="openScreen('verificationScreen');return false;"><i class="fas fa-user-plus"></i> Join as an Artisan</a>
         </div>
         <div class="artisans-image fade-in-right">
-          <div class="artisans-image-inner">
-            <i class="fas fa-user-tie"></i>
-            <p style="font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">Start earning today</p>
-            <p style="font-size:14px;color:var(--text-secondary);">Thousands of jobs waiting for you.</p>
+          <div class="artisans-dashboard">
+            <div class="ad-status">
+              <span>9:41</span>
+              <span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span>
+            </div>
+            <div class="ad-greeting">
+              <div class="ad-avatar">C</div>
+              <div>
+                <div class="ad-greeting-text">Good morning 👋</div>
+                <div class="ad-name">Chidi</div>
+                <div class="ad-trade"><i class="fas fa-bolt"></i> Electrician &bull; Ikeja</div>
+              </div>
+            </div>
+            <div class="ad-earnings">
+              <div class="ad-earnings-label">This week&rsquo;s earnings</div>
+              <div class="ad-earnings-row">
+                <span class="ad-earnings-amount">₦62,400</span>
+                <span class="ad-earnings-trend"><i class="fas fa-arrow-up"></i> +18%</span>
+              </div>
+            </div>
+            <div class="ad-stats-row">
+              <div class="ad-stat-tile">
+                <span class="ad-stat-num">12</span>
+                <span class="ad-stat-label">Jobs This Week</span>
+              </div>
+              <div class="ad-stat-tile">
+                <span class="ad-stat-num">4.9</span>
+                <span class="ad-stat-label">Rating Average</span>
+              </div>
+            </div>
+            <div class="ad-requests-header">
+              <span>New Requests</span>
+              <span class="ad-requests-badge">3</span>
+            </div>
+            <div class="ad-request-card">
+              <div class="ad-req-top">
+                <span class="ad-req-title">Faulty wiring repair</span>
+                <span class="ad-req-price">₦8,500</span>
+              </div>
+              <div class="ad-req-bottom">
+                <span><i class="fas fa-location-dot"></i> 2.3 km away</span>
+                <span class="ad-req-time"><i class="far fa-clock"></i> 15 min ago</span>
+              </div>
+            </div>
+            <div class="ad-request-card">
+              <div class="ad-req-top">
+                <span class="ad-req-title">New socket installation</span>
+                <span class="ad-req-price">₦5,200</span>
+              </div>
+              <div class="ad-req-bottom">
+                <span><i class="fas fa-location-dot"></i> 1.1 km away</span>
+                <span class="ad-req-time"><i class="far fa-clock"></i> 32 min ago</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1458,7 +2224,7 @@
       </div>
       <div class="download-visual fade-in-right">
         <div class="phone-mockup" style="animation-delay:1s;">
-          <div class="phone-mockup-inner" style="background:linear-gradient(135deg,#1FAF6B,#0d8b4f);display:flex;align-items:center;justify-content:center;color:white;flex-direction:column;padding:20px;text-align:center;">
+          <div class="phone-mockup-inner" style="background:linear-gradient(135deg,#1D7A4C,#115C38);display:flex;align-items:center;justify-content:center;color:white;flex-direction:column;padding:20px;text-align:center;">
             <i class="fas fa-check-circle" style="font-size:48px;margin-bottom:12px;"></i>
             <p style="font-size:18px;font-weight:700;">OgaFix</p>
             <small style="opacity:0.8;">Your Artisan, Your Neighbour</small>
@@ -1513,7 +2279,144 @@
     </div>
   </footer>
 
+  <!-- ===== SIGN IN SCREEN ===== -->
+  <div class="screen-overlay" id="signinScreen">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="screen-back" onclick="closeScreen('signinScreen')"><i class="fas fa-arrow-left"></i></button>
+      </div>
+      <h1 class="screen-title">Sign in</h1>
+      <p class="screen-subtitle">Welcome back. Enter your details to continue.</p>
+      <div class="form-group">
+        <label class="form-label">Email or Phone Number</label>
+        <input class="form-input" type="text" placeholder="you@example.com or +234...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Enter your password">
+      </div>
+      <div class="form-footer">
+        <button class="form-link">Forgot password?</button>
+      </div>
+      <button class="btn-block btn-forest">Sign in</button>
+      <div class="divider">or continue with</div>
+      <div class="social-btns">
+        <button class="social-btn"><i class="fab fa-google"></i> Google</button>
+        <button class="social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+      <p class="screen-footer-text">Don't have an account? <a onclick="openScreen('signupScreen');closeScreen('signinScreen')">Create account</a></p>
+    </div>
+  </div>
+
+  <!-- ===== SIGN UP SCREEN ===== -->
+  <div class="screen-overlay" id="signupScreen">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="screen-back" onclick="closeScreen('signupScreen')"><i class="fas fa-arrow-left"></i></button>
+      </div>
+      <h1 class="screen-title">Create account</h1>
+      <p class="screen-subtitle">Join OgaFix and get things done.</p>
+      <div class="role-toggle">
+        <button class="role-option active" onclick="setRole(this,true)"><i class="fas fa-concierge-bell"></i> Need a service</button>
+        <button class="role-option" onclick="setRole(this,false)"><i class="fas fa-tools"></i> Offer a service</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input class="form-input" type="tel" placeholder="+234 801 234 5678">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="At least 8 characters">
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox"><span class="check-box"></span>
+        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+      </label>
+      <button class="btn-block btn-forest">Continue</button>
+      <p class="screen-footer-text">Already have an account? <a onclick="openScreen('signinScreen');closeScreen('signupScreen')">Sign in</a></p>
+    </div>
+  </div>
+
+  <!-- ===== OTP VERIFICATION SCREEN ===== -->
+  <div class="screen-overlay" id="otpScreen">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="screen-back" onclick="closeScreen('otpScreen')"><i class="fas fa-arrow-left"></i></button>
+      </div>
+      <div class="otp-badge"><i class="fas fa-envelope"></i></div>
+      <h1 class="screen-title" style="text-align:center;">Check your inbox</h1>
+      <p class="screen-subtitle" style="text-align:center;">We sent a 4-digit code to <strong>you@example.com</strong>. Enter it below.</p>
+      <div class="otp-inputs" id="otpInputs">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" autofocus>
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+      </div>
+      <button class="btn-block btn-forest">Verify</button>
+      <p class="otp-resend">Didn't get it? <button>Resend via call</button></p>
+    </div>
+  </div>
+
+  <!-- ===== ARTISAN VERIFICATION — STEP 2 (IDENTITY UPLOAD) ===== -->
+  <div class="screen-overlay" id="verificationScreen">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <button class="screen-back" onclick="closeScreen('verificationScreen')"><i class="fas fa-arrow-left"></i></button>
+        <span style="font-size:14px;font-weight:600;color:var(--primary);">Step 2 of 3</span>
+      </div>
+      <div class="progress-steps">
+        <span class="progress-step filled"></span>
+        <span class="progress-step filled"></span>
+        <span class="progress-step"></span>
+      </div>
+      <h1 class="screen-title">Upload your ID</h1>
+      <p class="screen-subtitle">Select your ID type and upload a clear photo of the front and back.</p>
+      <div class="pill-toggle">
+        <button class="pill-option active" onclick="setPill(this)">NIN</button>
+        <button class="pill-option" onclick="setPill(this)">Driver's License</button>
+        <button class="pill-option" onclick="setPill(this)">International Passport</button>
+        <button class="pill-option" onclick="setPill(this)">Voter's Card</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Front of ID</label>
+        <div class="upload-zone" onclick="this.classList.toggle('active')">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Tap or click to upload</p>
+          <small>PNG, JPG or PDF (max 5MB)</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Back of ID</label>
+        <div class="upload-zone" onclick="this.classList.toggle('active')">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Tap or click to upload</p>
+          <small>PNG, JPG or PDF (max 5MB)</small>
+        </div>
+      </div>
+      <button class="btn-block btn-forest">Continue</button>
+    </div>
+  </div>
+
   <script>
+    function openScreen(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeScreen(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+    function setRole(el, isCustomer) {
+      document.querySelectorAll('.role-option').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function setPill(el) {
+      document.querySelectorAll('.pill-option').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
@@ -1585,6 +2488,53 @@
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
+      });
+
+      /* ===== OTP auto-advance ===== */
+      const otpInputs = document.querySelectorAll('.otp-box');
+      otpInputs.forEach((input, idx) => {
+        input.addEventListener('input', () => {
+          if (input.value.length === 1) {
+            input.classList.add('filled');
+            if (idx < otpInputs.length - 1) otpInputs[idx + 1].focus();
+          } else if (input.value.length === 0) {
+            input.classList.remove('filled');
+          }
+        });
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && input.value.length === 0 && idx > 0) {
+            otpInputs[idx - 1].focus();
+            otpInputs[idx - 1].classList.remove('filled');
+          }
+        });
+        input.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const data = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, otpInputs.length);
+          data.split('').forEach((char, i) => {
+            if (otpInputs[i]) { otpInputs[i].value = char; otpInputs[i].classList.add('filled'); }
+          });
+          const nextIdx = Math.min(data.length, otpInputs.length - 1);
+          otpInputs[nextIdx].focus();
+        });
+      });
+
+      /* ===== OTP resend countdown (demo) ===== */
+      document.querySelector('.otp-resend button')?.addEventListener('click', function() {
+        const orig = this.textContent;
+        this.disabled = true;
+        this.style.opacity = '0.5';
+        let count = 30;
+        this.textContent = `Resend in ${count}s`;
+        const t = setInterval(() => {
+          count--;
+          if (count <= 0) { clearInterval(t); this.textContent = 'Resend via call'; this.disabled = false; this.style.opacity = '1'; }
+          else { this.textContent = `Resend in ${count}s`; }
+        }, 1000);
+      });
+
+      /* ===== Upload zone: simulate file picker ===== */
+      document.querySelectorAll('.upload-zone').forEach(zone => {
+        zone.addEventListener('click', () => zone.classList.toggle('active'));
       });
     });
   </script>
